@@ -17,6 +17,11 @@ extension TOTP {
         generate()
     }
     
+    /// The secret key as a base32 encoded string
+    public var base32Secret: String {
+        secret.base32EncodedString()
+    }
+    
     /// Generates an OTP for the current time using swift-crypto
     /// - Returns: The generated OTP as a string with leading zeros if necessary
     public func generate() -> String {
