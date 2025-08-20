@@ -9,7 +9,14 @@ import OneTimePasswordShared
 import Foundation
 import Dependencies
 
+
+
 public typealias TOTP = RFC_6238.TOTP
+
+extension TOTP {
+    public typealias Algorithm = RFC_6238.Algorithm
+    public typealias Error = RFC_6238.Error
+}
 
 extension TOTP {
     /// Convenience accessor for the OTP at the current time

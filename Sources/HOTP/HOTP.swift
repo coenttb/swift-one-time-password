@@ -11,6 +11,11 @@ import Foundation
 public typealias HOTP = RFC_6238.HOTP
 
 extension HOTP {
+    public typealias Algorithm = RFC_6238.Algorithm
+    public typealias Error = RFC_6238.Error
+}
+
+extension HOTP {
     /// Creates an HOTP configuration from a base32 encoded secret
     /// - Parameters:
     ///   - base32Secret: The base32 encoded secret
