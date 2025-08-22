@@ -62,13 +62,16 @@ let package = Package(
             name: .totp.tests,
             dependencies: [
                 .totp,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
+                .crypto
             ]
         ),
         .testTarget(
             name: .hotp.tests,
             dependencies: [
-                .hotp
+                .hotp,
+                .dependenciesTestSupport,
+                .crypto
             ]
         )
     ],
