@@ -45,10 +45,8 @@ extension TOTP {
   /// - Parameter length: The length of the secret in bytes (default: 20 for SHA1 compatibility)
   /// - Returns: Base32 encoded secret string
   public static func generateSecret(length: Int = 20) -> String {
-    var bytes = Data(count: length)
-    _ = bytes.withUnsafeMutableBytes { pointer in
-      SecRandomCopyBytes(kSecRandomDefault, length, pointer.baseAddress!)
-    }
+    let key = SymmetricKey(size: .init(bitCount: length * 8))
+    let bytes = key.withUnsafeBytes { Data($0) }
     return bytes.base32EncodedString()
   }
 
