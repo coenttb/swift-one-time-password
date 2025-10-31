@@ -1,23 +1,23 @@
 # swift-one-time-password
 
-A production-ready Swift implementation of One-Time Password algorithms (TOTP and HOTP), providing high-level, convenient APIs built on top of [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html) and [RFC 4226](https://www.rfc-editor.org/rfc/rfc4226.html) with seamless integration for Apple's swift-crypto library.
+[![CI](https://github.com/coenttb/swift-one-time-password/workflows/CI/badge.svg)](https://github.com/coenttb/swift-one-time-password/actions/workflows/ci.yml)
+![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
+
+Swift implementation of One-Time Password algorithms (TOTP and HOTP) based on [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html) and [RFC 4226](https://www.rfc-editor.org/rfc/rfc4226.html).
 
 ## Overview
 
-This package provides enterprise-grade APIs for generating and validating One-Time Passwords, perfect for implementing two-factor authentication (2FA) in your Swift applications:
+This package provides APIs for generating and validating One-Time Passwords for two-factor authentication (2FA) in Swift applications:
 
-- 🔐 **TOTP** (Time-Based One-Time Password) - The standard for most 2FA systems (Google Authenticator, Authy, etc.)
-- 🔢 **HOTP** (HMAC-Based One-Time Password) - Counter-based OTP for offline scenarios
-- 🏗️ **Modular Architecture** - Choose only what you need with separate TOTP and HOTP targets
-- 🔒 **Secure by Design** - Built with swift-crypto for cryptographic operations
-- 📱 **Cross-Platform** - Works on macOS, iOS, and all Swift-supported platforms
+- **TOTP** (Time-Based One-Time Password) - RFC 6238 implementation for time-based codes (30-second windows)
+- **HOTP** (HMAC-Based One-Time Password) - RFC 4226 implementation for counter-based codes
 
 ### Package Structure
 
-The package is thoughtfully organized into three targets:
+The package is organized into three targets:
 - `OneTimePasswordShared` - Core cryptographic functionality using swift-crypto
-- `TOTP` - Time-based OTP implementation with convenient extensions
-- `HOTP` - Counter-based OTP implementation with ergonomic APIs
+- `TOTP` - Time-based OTP implementation with convenience extensions
+- `HOTP` - Counter-based OTP implementation
 
 ## Installation
 
@@ -66,7 +66,7 @@ if totp.validate("123456") {
 }
 
 // Check time remaining for current code
-let remaining = totp.timeRemaining
+let remaining = totp.timeRemaining()
 print("Code expires in: \(Int(remaining)) seconds")
 ```
 
@@ -185,18 +185,18 @@ let hotpBase32 = try HOTP(base32Secret: "JBSWY3DPEHPK3PXP", algorithm: .sha256)
 
 ## Features
 
-- ✅ **RFC 6238 & RFC 4226 Compliant**: Full implementation of TOTP and HOTP standards
-- 🔐 **Multiple Hash Algorithms**: SHA1, SHA256, and SHA512 support
-- 🎲 **Secure Key Generation**: Cryptographically secure random key generation using swift-crypto
-- 📝 **Base32 Encoding**: Automatic base32 encoding/decoding for secrets (RFC 4648)
-- 📱 **QR Code URIs**: Generate otpauth:// URIs for authenticator apps
-- ⏰ **Time Window Validation**: Handle clock skew with configurable time windows
-- 📦 **Migration Support**: Import/export parameters for authenticator app migration
-- 🔒 **Swift Crypto Integration**: Built on Apple's battle-tested swift-crypto library
-- 🏗️ **Modular Design**: Use only what you need with separate TOTP and HOTP targets
-- 🧪 **Thoroughly Tested**: Comprehensive test coverage with RFC test vectors
-- 🚀 **Type-Safe**: Leverages Swift's type system with throwing initializers
-- 📅 **Dependency Injection**: Time-based testing support via swift-dependencies
+- RFC 6238 & RFC 4226 Compliant - Full implementation of TOTP and HOTP standards
+- Multiple Hash Algorithms - SHA1, SHA256, and SHA512 support
+- Secure Key Generation - Cryptographically secure random key generation using swift-crypto
+- Base32 Encoding - Automatic base32 encoding/decoding for secrets (RFC 4648)
+- QR Code URIs - Generate otpauth:// URIs for authenticator apps
+- Time Window Validation - Handle clock skew with configurable time windows
+- Migration Support - Import/export parameters for authenticator app migration
+- Swift Crypto Integration - Built on swift-crypto for HMAC operations
+- Modular Design - Separate TOTP and HOTP targets
+- Type-Safe - Throwing initializers with error handling
+- Dependency Injection - Time-based testing support via swift-dependencies
+- Test Coverage - RFC test vectors included
 
 ## Requirements
 
@@ -212,15 +212,15 @@ let hotpBase32 = try HOTP(base32Secret: "JBSWY3DPEHPK3PXP", algorithm: .sha256)
 The package includes comprehensive test coverage using Swift Testing framework:
 
 ### Test Coverage
-- ✅ RFC 6238 test vectors (TOTP)
-- ✅ RFC 4226 test vectors (HOTP)
-- ✅ Secret generation and validation
-- ✅ Time window validation
-- ✅ Migration parameters
-- ✅ Factory methods
-- ✅ Edge cases and error handling
-- ✅ Base32 encoding/decoding
-- ✅ Provisioning URI generation
+- RFC 6238 test vectors (TOTP)
+- RFC 4226 test vectors (HOTP)
+- Secret generation and validation
+- Time window validation
+- Migration parameters
+- Factory methods
+- Edge cases and error handling
+- Base32 encoding/decoding
+- Provisioning URI generation
 
 ### Running Tests
 ```bash
@@ -270,6 +270,12 @@ swift-one-time-password/
     └── HOTP Tests/
 ```
 
+## Related Packages
+
+- [swift-rfc-6238](https://github.com/swift-web-standards/swift-rfc-6238) - Core RFC 6238 (TOTP) and RFC 4226 (HOTP) implementations
+- [swift-crypto](https://github.com/apple/swift-crypto) - Apple's cryptography library for Swift
+- [swift-dependencies](https://github.com/pointfreeco/swift-dependencies) - Dependency injection framework
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -277,9 +283,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 MIT License - See LICENSE file for details
-
-## Acknowledgments
-
-- Built on top of [swift-rfc-6238](https://github.com/swift-web-standards/swift-rfc-6238) for RFC compliance
-- Uses [swift-crypto](https://github.com/apple/swift-crypto) for cryptographic operations
-- Inspired by the need for a pure Swift, production-ready OTP implementation
