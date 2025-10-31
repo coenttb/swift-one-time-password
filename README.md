@@ -272,9 +272,14 @@ swift-one-time-password/
 
 ## Related Packages
 
-- [swift-rfc-6238](https://github.com/swift-web-standards/swift-rfc-6238) - Swift implementation of RFC 6238: TOTP: Time-Based One-Time Password Algorithm
-- [swift-crypto](https://github.com/apple/swift-crypto) - Open-source implementation of a substantial portion of the API of Apple CryptoKit suitable for use on Linux platforms
-- [swift-dependencies](https://github.com/pointfreeco/swift-dependencies) - A dependency management library inspired by SwiftUI's "environment"
+### Used By
+
+- [swift-identities](https://github.com/coenttb/swift-identities): The Swift library for identity authentication and management.
+
+### Third-Party Dependencies
+
+- [pointfreeco/swift-dependencies](https://github.com/pointfreeco/swift-dependencies): A dependency management library for controlling dependencies in Swift.
+- [apple/swift-crypto](https://github.com/apple/swift-crypto): Open-source implementation of a substantial portion of the API of Apple CryptoKit.
 
 ## Contributing
 
