@@ -33,7 +33,7 @@ let package = Package(
         .library(name: .hotp, targets: [.hotp]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-crypto", from: "3.0.0"),
+        .package(url: "https://github.com/apple/swift-crypto", from: "4.1.0"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/swift-web-standards/swift-rfc-6238.git", from: "0.0.1")
     ],
